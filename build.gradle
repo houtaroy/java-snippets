@@ -1,0 +1,35 @@
+// 使用plugins DSL来定义通用插件
+plugins {
+    id 'java'
+}
+
+group = 'cn.koala.java.snippets'
+version = '2024.0.0-SNAPSHOT'
+
+// 定义所有项目的通用仓库
+repositories {
+    mavenCentral()
+}
+
+// 定义所有项目的通用依赖
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 配置所有的子项目
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'junit:junit:4.13.2'
+    }
+}
